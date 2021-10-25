@@ -10,12 +10,27 @@ const renderer = new THREE.WebGLRenderer({ antialias: true })
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 // const domEvents=new THREEx.DomEvents(camera,renderer.domElement);
+scene.add(bg)
+let px = -19
+let py = 8
+for (let i = 0; i < 11; i++) {
+  for (let j = 0; j < 37; j++) {
+    const g = group.clone()
+    g.position.x = px
+    g.position.y = py
+    px++
+    scene.add(g)
+  }
+  py = py - 1.6
+  px = -19
+}
 
 const geometry = new THREE.BoxGeometry(3, 0.2, 5)
 const material = new THREE.MeshBasicMaterial({ color: 0x006400 })
 const cube = new THREE.Mesh(geometry, material)
 scene.add(cube)
-camera.position.z = 20
+camera.position.z = 5
+
 // domEvents.addEventListener(camera,'keypress',()=>{
 //     camera.position.z=10;
 // })
@@ -29,6 +44,7 @@ const makeSphere = function (colorVal, r, w, h, x, y, z) {
   sphere.position.z = z
   return sphere
 }
+
 const ball_1 = makeSphere(0xff0000, 0.1, 100, 100, -0.5, 0.2, 0)
 const ball_2 = makeSphere(0xff0000, 0.1, 100, 100, -0.3, 0.2, 0)
 const ball_3 = makeSphere(0xff0000, 0.1, 100, 100, -0.1, 0.2, 0)
@@ -107,4 +123,4 @@ function animate() {
 console.log(cube.position.x, cube.position.y, cube.position.z)
 console.log(camera.position.z)
 
-animate();
+// animate();
